@@ -10,7 +10,6 @@ function jugar()
     let i = 0;
     let numero = 0;
     let numeroElegido = [];
-    console.log(numeroSecreto);//eliminar
     while(i < intentos)
         {
         let numeroValido = 0;
