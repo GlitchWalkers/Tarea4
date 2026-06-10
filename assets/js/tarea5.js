@@ -21,22 +21,30 @@ function validarIngreso()
     while(validado == false)
     {
     ingreso = parseInt(prompt("Ingrese cantidad de palabras para trabajar"));
-        if(isNaN(ingreso))
-            {alert("Debe ingresar un numero valido");}
-        else
+    if(isNaN(ingreso))
+        {alert("Debe ingresar un numero valido");}
+    else
         {if(ingreso > 10)
             {
-            alert("La cantidad ingesada es mayor a 10. Estas seguro de la cantidad de palabras para trabajar");
+            alert("La cantidad ingesada es mayor a 10. Esta seguro de la cantidad de palabras para trabajar");
             ingreso = parseInt(prompt("Confirme la cantidad ingresada o ingrese un nuevo valor",ingreso));
-            validado = true;
-            return ingreso;
+            if(isNaN(ingreso)) //revalidar que ingrese un numero
+                {
+                alert("Debe ingresar un numero valido");
+                validado=false;
+                }
+            else
+                {
+                validado = true;
+                return ingreso;
+                }
             }
         else
             {
             validado = true;
             return ingreso;   
             }
-        }
+    }
     }
     }
 
@@ -76,4 +84,6 @@ function historial (aux)
     document.getElementById("palCantidad").innerHTML=cantidadPalabras;
     document.getElementById("palIngresadas").innerHTML=listadoPalabras;
     document.getElementById("palVocales").innerHTML=aux;
+    console.log("El total de vocales es " + aux);
+    alert("El total de vocales es " + aux);
     }
