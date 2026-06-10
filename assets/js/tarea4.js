@@ -1,4 +1,4 @@
-let iniciarAdivinacion = document.getElementById("adivinarNumero");
+const iniciarAdivinacion = document.getElementById("adivinarNumero");
 
 iniciarAdivinacion.addEventListener("click", ()=>jugar());
 
