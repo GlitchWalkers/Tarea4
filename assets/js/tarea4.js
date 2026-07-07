@@ -7,7 +7,7 @@ function jugar()
     const numeroSecreto = Math.floor(Math.random()*10)+1;
     document.getElementById("adorno").src="";
     let intentos = 3;
-    let i = 0;
+    let i = 0; /* intentos */
     let numero = 0;
     let numeroElegido = [];
     while(i < intentos)
@@ -17,8 +17,8 @@ function jugar()
         if (!verificarRepetido(numeroValido,numeroElegido))
             {
             numeroElegido.push(numeroValido);
-            document.getElementById("numElegidos").innerHTML=numeroElegido;
-            i++;
+            document.getElementById("numElegidos").innerHTML = numeroElegido;
+            i++; /*dentro del If, solo se ejecuta si se validad la condicion. Se aclararon mensajes para evitar un while infinito por ingresar mismo numero repetidas veces  */
             if (comprobar(numeroValido,numeroSecreto))
                 {
                 alert(`Acertaste, el numero ${numeroSecreto} era el numero secreto`);
@@ -64,16 +64,18 @@ function validarIntento()
         }; 
     };
 
-function verificarRepetido(numeroValido,numeroElegido)
+function verificarRepetido(numeroValido,numeroElegido) /*al llamar la funcion negandola, cuando se verificaba un numero no repetido devolvia undefined pero la negacion lo cambiaba a true (por ser kinda false/falsy). Se agrega else */
     {
         let intentosAnteriores = [];
         intentosAnteriores = numeroElegido;
         if (intentosAnteriores.includes(numeroValido))
             {
-            alert(`El numero ${numeroValido} ya fue usado`);
+            alert(`El numero ${numeroValido} ya fue usado. Pruebe uno diferente. Intento no consumido`);        
             return true;
-            };
-    }
+            }
+        else
+            {return false};
+    };
 
 function comprobar(numeroValido,numeroSecreto)
     {
