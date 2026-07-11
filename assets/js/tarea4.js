@@ -14,6 +14,12 @@ function jugar()
         {
         let numeroValido = 0;
         numeroValido=validarIntento();
+        
+        if (numeroValido === -1)/* validar intento me retorna -1 cuando se apreta cancelar y prompt recibe null o un Nan*/
+            {
+            break;
+            };
+        
         if (!verificarRepetido(numeroValido,numeroElegido))
             {
             numeroElegido.push(numeroValido);
@@ -51,7 +57,13 @@ function validarIntento()
         while (numValido == false)
         {
             let numeroElegido = parseInt(prompt("Ingrese un numero valido entre 1 y 10", 0));
-            if(isNaN(numeroElegido) || numeroElegido < 1 || numeroElegido > 10)
+            
+            if (numeroElegido === null || isNaN(numeroElegido)) /* si presiono cancelar o recibo NaN retonro -1 y termino ciclo */
+                {
+                alert('Juego cancelado'); return -1;
+                };
+
+            if(numeroElegido < 1 || numeroElegido > 10)
                 {                
                 numValido = false;
                 alert(`El numero ${numeroElegido} esta fuera de rango`);
@@ -80,7 +92,11 @@ function verificarRepetido(numeroValido,numeroElegido) /*al llamar la funcion ne
 function comprobar(numeroValido,numeroSecreto)
     {
         if(numeroValido==numeroSecreto)
-        {
-         return true;   
-        }        
+            {
+            return true;   
+            }
+        else
+            {
+            return false;
+            };
     };
